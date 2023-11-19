@@ -20,6 +20,9 @@ class Todo {
         // Adicionar eventos às tasks
         this.addEvents();
 
+        // Atualizar o total de tarefas após a adição
+        this.totalTasks = document.querySelectorAll('.task').length;
+
         this.checkTasks('add');
     }
 
@@ -27,10 +30,30 @@ class Todo {
         // Encontrar o elemento pai
         let parentEl = task.parentElement;
 
+        // Remover eventos associados à tarefa antes de removê-la
+        this.removeEvents(parentEl);
+
         // Remover elemento
         parentEl.remove();
 
+        // Atualizar o total de tarefas após a remoção
+        this.totalTasks = document.querySelectorAll('.task').length;
+
         this.checkTasks('remove');
+    }
+
+    removeEvents(task) {
+        // Remover eventos associados à tarefa
+        let removeBtn = task.querySelector('.fa-trash');
+        let editBtn = task.querySelector('.edit-btn');
+
+        removeBtn.removeEventListener('click', () => {
+            this.removeTask(task);
+        });
+
+        editBtn.removeEventListener('click', () => {
+            this.editTask(task);
+        });
     }
 
     editTask(task) {
@@ -69,7 +92,7 @@ class Todo {
             removeBtn.addEventListener('click', () => {
                 this.removeTask(removeBtn.parentElement);
             });
-        });        
+        });
 
         editBtns.forEach((editBtn) => {
             editBtn.addEventListener('click', () => {
