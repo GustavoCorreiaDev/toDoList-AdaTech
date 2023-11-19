@@ -33,20 +33,6 @@ class Todo {
         this.checkTasks('remove');
     }
 
-    toggleDone(task) {
-        // Verificar se a tarefa já possui a classe 'done'
-        if (task.classList.contains('done')) {
-            // Se tiver, remover a classe 'done'
-            task.classList.remove('done');
-        } else {
-            // Se não tiver, adicionar a classe 'done'
-            task.classList.add('done');
-        }
-
-        // Verificar o estado após a alternância
-        this.checkTasks('toggle');
-    }
-
     editTask(task) {
         let taskTextElement = task.querySelector('.task-title');
 
@@ -77,7 +63,6 @@ class Todo {
 
     addEvents() {
         let removeBtns = document.querySelectorAll('.fa-trash');
-        let doneBtns = document.querySelectorAll('.fa-check');
         let editBtns = document.querySelectorAll('.edit-btn');
 
         removeBtns.forEach((removeBtn) => {
@@ -97,14 +82,14 @@ class Todo {
         let msg = document.querySelector('#empty-tasks');
 
         // Adicionar, remover ou editar tarefas
-        if (command === 'add' || command === 'edit' || command === 'toggle') {
+        if (command === 'add' || command === 'edit') {
             this.totalTasks = document.querySelectorAll('.task').length;
         } else if (command === 'remove') {
             this.totalTasks -= 1;
         }
 
         // Checar se há mais de uma tarefa e adicionar ou remover a classe
-        if (this.totalTasks === 0) {
+        if (this.totalTasks == 0) {
             msg.classList.remove('hide');
         } else {
             msg.classList.add('hide');
