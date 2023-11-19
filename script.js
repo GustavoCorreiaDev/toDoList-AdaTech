@@ -1,43 +1,66 @@
 class Todo {
     constructor() {
-        this.totalTasks = document.querySelectorAll('.task').length;
+        this.tasks = []; // Array para armazenar as tarefas
+        this.totalTasks = 0; // Inicializa o total de tarefas como 0
+        this.nextTaskId = 1; // Inicializa o próximo ID como 1
     }
 
     addTask(taskText) {
-        // Clonar template
+        // Obtém o próximo ID sequencial
+        let taskId = this.nextTaskId++;
+
+        // Cria um objeto representando a tarefa
+        let newTask = {
+            id: taskId,
+            text: taskText
+        };
+
+        // Adiciona a nova tarefa ao array de tarefas
+        this.tasks.push(newTask);
+
+        // Atualiza o total de tarefas
+        this.totalTasks = this.tasks.length;
+
+        // Clona o template
         let template = document.querySelector('.task').cloneNode(true);
-        // Remover classe 'hide' do template
+
+        // Remove a classe 'hide' do template
         template.classList.remove('hide');
 
         let templateText = template.querySelector('.task-title');
         templateText.textContent = taskText;
 
+        // Adiciona ID à nova tarefa
+        template.setAttribute('data-task-id', taskId);
+
         let list = document.querySelector('#tasks-container');
 
-        // Inserir na lista
+        // Insere na lista
         list.appendChild(template);
 
-        // Adicionar eventos às tasks
+        // Adiciona eventos às tarefas
         this.addEvents();
 
-        // Atualizar o total de tarefas após a adição
-        this.totalTasks = document.querySelectorAll('.task').length;
-
+        // Atualiza o total de tarefas após a adição
         this.checkTasks('add');
     }
 
     removeTask(task) {
-        // Encontrar o elemento pai
+        // Encontra o elemento pai
         let parentEl = task.parentElement;
 
-        // Remover eventos associados à tarefa antes de removê-la
+        // Remove eventos associados à tarefa antes de removê-la
         this.removeEvents(parentEl);
 
-        // Remover elemento
+        // Remove elemento do array de tarefas
+        let taskId = parentEl.getAttribute('data-task-id');
+        this.tasks = this.tasks.filter(task => task.id != taskId);
+
+        // Remove elemento do HTML
         parentEl.remove();
 
-        // Atualizar o total de tarefas após a remoção
-        this.totalTasks = document.querySelectorAll('.task').length;
+        // Atualiza o total de tarefas após a remoção
+        this.totalTasks = this.tasks.length;
 
         this.checkTasks('remove');
     }
@@ -75,7 +98,7 @@ class Todo {
                 editText.remove();
 
                 // Atualizar o total de tarefas após a edição
-                this.totalTasks = document.querySelectorAll('.task').length;
+                this.totalTasks = this.tasks.length;
                 this.checkTasks('edit');
             }
         });
@@ -103,20 +126,31 @@ class Todo {
 
     checkTasks(command) {
         let msg = document.querySelector('#empty-tasks');
-
+    
         // Adicionar, remover ou editar tarefas
         if (command === 'add' || command === 'edit') {
-            this.totalTasks = document.querySelectorAll('.task').length;
+            this.totalTasks = this.tasks.length;
         } else if (command === 'remove') {
-            this.totalTasks -= 1;
+            this.totalTasks = this.tasks.length;
         }
-
+    
         // Checar se há mais de uma tarefa e adicionar ou remover a classe
-        if (this.totalTasks == 0) {
+        if (this.totalTasks === 0) {
             msg.classList.remove('hide');
         } else {
             msg.classList.add('hide');
         }
+    
+        // Exibe todas as tarefas no console
+        this.logAllTasks();
+    }        
+
+    logAllTasks() {
+        // Exibe todas as tarefas no console
+        console.log("Lista de Tarefas:");
+        this.tasks.forEach(task => {
+            console.log(`ID: ${task.id}, Texto: ${task.text}`);
+        });
     }
 }
 
