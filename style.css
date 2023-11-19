@@ -1,0 +1,144 @@
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+    color: white;
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+body {
+    background-color: #2c2c2c;
+}
+
+h2 {
+    margin-bottom: 25px;
+}
+
+/* container */
+
+#main-container {
+    background-color: #343434;
+    position: relative;
+    max-width: 50%;
+    margin-left: auto;
+    margin-right: auto;
+    padding: 30px;
+    margin-top: 5vh;
+    border-radius: 1rem;
+    overflow: auto;
+    word-wrap: break-word;
+}
+
+/* add container */
+#add-container {
+    margin-bottom: 20px;
+    padding-bottom: 20px;
+    border-bottom: 1px solid #444;
+}
+
+#add-container input, #add-container button {
+    padding: 10px;
+    background-color: #393939;
+    border: none;
+    width: 80%;
+    display: inline-block;
+}
+
+#add-container button {
+    width: 18%;
+    cursor: pointer;
+    transition: .5s;
+}
+
+#add-container button i {
+    color: #ff7066;
+}
+
+#add-container button:hover {
+    background-color: #ff7066;
+}
+
+#add-container button:hover > i {
+    color: #343434;
+}
+
+/* tasks container */
+
+.task {
+    margin-bottom: 15px;
+    padding-bottom: 15px;
+    border-bottom: 1px solid #444;
+    position: relative;
+    max-width: 100%;
+    word-wrap: break-word;
+}
+
+.task-content {
+    display: flex;
+    align-items: center;
+}
+
+.task-actions {
+    display: flex;
+}
+
+.hide {
+    display: none;
+}
+
+.task:hover .fa-trash {
+    display: block;
+}
+
+.fa.fa-edit{
+    border-radius: 50%;
+    border: 1px solid #444;
+    padding: 7px;
+    margin-right: 10px;
+    cursor: pointer;
+}
+
+.fa.fa-trash,
+.fa.fa-edit:hover {
+    color: #ff7066;
+    border-color: #ff7066;
+}
+
+.fa.fa-trash {
+    position: absolute;
+    right: 10px;
+    top: 10px;
+    cursor: pointer;
+    display: none;
+}
+
+#empty-tasks {
+    text-align: center;
+}
+
+textarea {
+    width: 100%;
+    padding: 10px;
+    background-color: #393939;
+    border: none;
+    resize: none; /* Evita redimensionamento do textarea */
+    color: white;
+}
+
+/* media queries */
+
+@media (max-width: 480px) {
+    body {
+        padding: 20px;
+    }
+    h2 {
+        text-align: center;
+    }
+    #main-container {
+        max-width: 100%;
+        margin-top: 0;
+    }
+    .fa.fa-trash {
+        display: block;
+    }
+}

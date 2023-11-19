@@ -1,0 +1,40 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <!-- Link Awesome -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.2/css/all.min.css">
+    <!-- Link CSS -->
+    <link rel="stylesheet" href="style.css">
+    <!-- Link JavaScript -->
+    <script src="script.js" defer></script>
+    <title>ToDo List Ada-Tech</title>
+</head>
+<body>
+    <div id="main-container">
+        <div id="add-container">
+            <h2>Adicione tarefas:</h2>
+            <form action="">
+                <input type="text" name="task" id="task" placeholder="adicione aqui sua tarefa...">
+                <button type="submit" id="add"><i class="fa fa-plus"></i></button>
+            </form>
+        </div>
+        <div id="tasks-container">
+            <h2>Veja suas tarefas:</h2>
+            <!-- template -->
+            <div class="task hide">
+                <div class="task-content">
+                    <i class="fa fa-edit edit-btn"></i>
+                    <span class="task-title">Título da tarefa</span>
+                </div>
+                <div class="task-actions">
+                    <i class="fa fa-trash"></i>
+                </div>
+            </div>
+            <!-- template -->
+            <p id="empty-tasks">Não há tarefa cadastrada!</p>
+        </div>
+    </div>
+</body>
+</html>
