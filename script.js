@@ -15,10 +15,8 @@ class Todo {
             text: taskText
         };
 
-        // Adiciona a nova tarefa ao array de tarefas
+        // Adiciona a nova tarefa e atualiza o total
         this.tasks.push(newTask);
-
-        // Atualiza o total de tarefas
         this.totalTasks = this.tasks.length;
 
         // Clona o template
@@ -30,12 +28,9 @@ class Todo {
         let templateText = template.querySelector('.task-title');
         templateText.textContent = taskText;
 
-        // Adiciona ID à nova tarefa
+        // Adiciona ID à nova tarefa e insere na lista
         template.setAttribute('data-task-id', taskId);
-
         let list = document.querySelector('#tasks-container');
-
-        // Insere na lista
         list.appendChild(template);
 
         // Adiciona eventos às tarefas
@@ -79,8 +74,12 @@ class Todo {
         });
     }
 
+
     editTask(task) {
         let taskTextElement = task.querySelector('.task-title');
+
+        // Obter o ID da tarefa
+        let taskId = task.getAttribute('data-task-id');
 
         // Criar um campo de texto para edição
         let editText = document.createElement('textarea');
@@ -93,7 +92,17 @@ class Todo {
         // Adicionar evento para salvar a edição quando pressionar Enter
         editText.addEventListener('keydown', (e) => {
             if (e.key === 'Enter' && !e.shiftKey) {
+                // Atualizar o valor no array `tasks`
+                this.tasks = this.tasks.map(task => {
+                    if (task.id === parseInt(taskId)) {
+                        task.text = editText.value;
+                    }
+                    return task;
+                });
+
+                // Atualizar o texto no elemento HTML
                 taskTextElement.innerText = editText.value;
+
                 // Remover o campo de texto
                 editText.remove();
 
@@ -126,24 +135,41 @@ class Todo {
 
     checkTasks(command) {
         let msg = document.querySelector('#empty-tasks');
-    
+
         // Adicionar, remover ou editar tarefas
         if (command === 'add' || command === 'edit') {
             this.totalTasks = this.tasks.length;
         } else if (command === 'remove') {
             this.totalTasks = this.tasks.length;
         }
-    
+
         // Checar se há mais de uma tarefa e adicionar ou remover a classe
         if (this.totalTasks === 0) {
             msg.classList.remove('hide');
         } else {
             msg.classList.add('hide');
         }
-    
-        // Exibe todas as tarefas no console
+
+        // exibir a lista no console, confirmar ID.
         this.logAllTasks();
-    }        
+    }
+
+    searchTask() {
+        let searchText = prompt('Digite o texto da tarefa a ser pesquisada:');
+
+        if (!searchText) {
+            return;
+        }
+
+        let foundTask = this.tasks.find(task => task.text === searchText);
+
+        if (foundTask) {
+            alert(`Tarefa encontrada!\nID: ${foundTask.id}\nTexto: ${foundTask.text}`);
+        } else {
+            alert('Nenhuma tarefa encontrada com esse texto.');
+        }
+    }
+
 
     logAllTasks() {
         // Exibe todas as tarefas no console
@@ -158,6 +184,8 @@ let todo = new Todo();
 
 // Eventos
 let addBtn = document.querySelector('#add');
+let searchBtn = document.querySelector('#searchBtn');
+
 
 addBtn.addEventListener('click', (e) => {
     e.preventDefault();
@@ -170,4 +198,8 @@ addBtn.addEventListener('click', (e) => {
 
     // Limpar campo de texto
     taskText.value = '';
+});
+
+searchBtn.addEventListener('click', () => {
+    todo.searchTask();
 });

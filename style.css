@@ -28,6 +28,13 @@ h2 {
     overflow: auto;
     word-wrap: break-word;
 }
+#searchBtn{
+    padding: 10px;
+    margin-bottom: 4px;
+    background-color: #393939;
+    border: none;
+    display: inline-block;
+}
 
 /* add container */
 #add-container {
@@ -44,7 +51,7 @@ h2 {
     display: inline-block;
 }
 
-#add-container button {
+#add-container button, #searchBtn {
     width: 18%;
     cursor: pointer;
     transition: .5s;
@@ -54,11 +61,11 @@ h2 {
     color: #ff7066;
 }
 
-#add-container button:hover {
+#add-container button:hover, #searchBtn:hover {
     background-color: #ff7066;
 }
 
-#add-container button:hover > i {
+#add-container button:hover > i, #main-container button:hover {
     color: #343434;
 }
 
@@ -140,5 +147,8 @@ textarea {
     }
     .fa.fa-trash {
         display: block;
+    }
+    #searchBtn{
+        width: 55px;
     }
 }
