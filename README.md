@@ -1,24 +1,33 @@
-#ToDo App
-Este é um simples aplicativo de lista de tarefas (ToDo) que permite aos usuários adicionar, excluir e pesquisar tarefas. Facilita a organização das suas atividades diárias de maneira eficiente.
+# ToDo App
 
-##Como usar?
-###Adicionar Tarefa:
+Este é um aplicativo simples de lista de tarefas (ToDo) que permite aos usuários adicionar, excluir e pesquisar tarefas. Ele facilita a organização das suas atividades diárias de maneira eficiente.
 
-Digite o nome da tarefa na caixa de texto.
-Clique no botão "Adicionar" para incluir a tarefa na lista.
-###Excluir Tarefa:
+## Como usar?
 
-Ao lado de cada tarefa na lista, há um botão "Excluir". Clique neste botão para remover a tarefa desejada.
-###Pesquisar Tarefa:
+### Adicionar Tarefa:
 
-Utilize a barra de pesquisa para digitar a tarefa que você está procurando.
-A tarefa correspondente será filtrada.
-##Como usar?
-https://gustavocorreiadev.github.io/toDoList-AdaTech/
+1. Digite o nome da tarefa na caixa de texto.
+2. Clique no botão "Adicionar" para incluir a tarefa na lista.
 
-##Projeto Desenvolvido na Turma #1096
-#Ada Tech | ifood - frontEnd
-Desenvolvido como parte do projeto final do modulo Lógica de Programação ( js | ts )
+### Excluir Tarefa:
 
-##Licença
+- Ao lado de cada tarefa na lista, há um botão "Excluir". Clique neste botão para remover a tarefa desejada.
+
+### Pesquisar Tarefa:
+
+- Utilize a barra de pesquisa para digitar a tarefa que você está procurando.
+- A tarefa correspondente será filtrada.
+
+## Como usar?
+
+Para uma demonstração prática, acesse [este link](https://gustavocorreiadev.github.io/toDoList-AdaTech/) e experimente o aplicativo.
+
+## Projeto Desenvolvido na Turma #1096
+
+**Ada Tech | iFood - FrontEnd**
+
+Desenvolvido como parte do projeto final do módulo Lógica de Programação (JavaScript/TypeScript) na Turma #1096 da Ada Tech.
+
+## Licença
+
 Este projeto é licenciado sob a Licença MIT.
